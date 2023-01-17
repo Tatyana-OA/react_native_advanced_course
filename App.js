@@ -1,14 +1,20 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
-import Ball from "./src/Ball";
+import { Component } from "react";
+import { StyleSheet, View, Text } from "react-native";
+import Deck from "./src/Deck";
+import { DATA as catData } from "./mockdata/catData";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Ball />
-      <StatusBar style="auto" />
-    </View>
-  );
+class App extends Component {
+  renderCard(item) {
+    return <Text>{item.text}</Text>;
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>CaTinder!</Text>
+        <Deck renderCard={this.renderCard} data={catData} />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -18,5 +24,9 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
+    textAlign: "center",
+    marginTop: 10,
   },
 });
+
+export default App;
